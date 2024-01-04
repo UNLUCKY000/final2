@@ -26,7 +26,7 @@ if st.button('Generate Story'):
     ]
 
     prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-    outputs = pipe(prompt, max_new_tokens=10, do_sample=True, temperature=0.7, top_k=30, top_p=0.90)
+    outputs = pipe(prompt, max_new_tokens=500, do_sample=True, temperature=0.7, top_k=30, top_p=0.90)
     text = outputs[0]["generated_text"]
 
     # text = outputs = '<|assistant|> here we go, if u wanna try, lets do it'
