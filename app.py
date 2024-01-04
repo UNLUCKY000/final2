@@ -4,7 +4,7 @@ from datasets import load_dataset
 import soundfile as sf
 import torch
 
-st.title('Test')
+st.title('Audio Story Generator')
 
 if 'cache' not in st.session_state:
     st.session_state.cache = {'TEXT_PIPE' : pipeline("text-generation", model="HuggingFaceH4/zephyr-7b-beta", torch_dtype=torch.bfloat16, device_map="auto"),
@@ -12,7 +12,7 @@ if 'cache' not in st.session_state:
                             'EMBED':load_dataset("Matthijs/cmu-arctic-xvectors", split="validation")}
 
 if st.button('Generate Story'): 
-    st.write('TEST')
+
 
     pipe = st.session_state.cache['TEXT_PIPE']
 
@@ -32,7 +32,6 @@ if st.button('Generate Story'):
     # text = outputs = '<|assistant|> here we go, if u wanna try, lets do it'
     start = '<|assistant|>'
     text = text[text.index(start)+len(start):]
-    st.write(text)
 
     embeddings_dataset = st.session_state.cache['EMBED']
     synthesiser = st.session_state.cache['AUDIO_PIPE']
